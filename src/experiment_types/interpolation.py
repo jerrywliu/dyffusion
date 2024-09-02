@@ -77,7 +77,7 @@ class InterpolationExperiment(BaseExperiment):
         log_dict = dict()
         compute_metrics = split != "predict"
         split_metrics = getattr(self, f"{split}_metrics") if compute_metrics else None
-        dynamics = batch["dynamics"]  # dynamics is a (b, t, c, h, w) tensor
+        dynamics = batch["dynamics"]  # dynamics is a (b, t, c, h, w) tensor)
 
         return_dict = dict()
         avg_mse_key = f"{split}/{self.horizon_name}_avg{self.WANDB_LAST_SEP}mse"
@@ -130,6 +130,9 @@ class InterpolationExperiment(BaseExperiment):
         """Get the inputs from the dynamics tensor.
         Since we are doing interpolation, this consists of the first window frames plus the last frame.
         """
+        if len(dynamics.shape) == 6:
+            # Combine first two dims into batch dim
+            dynamics = rearrange(dynamics, "b1 b2 t c h w -> (b1 b2) t c h w")
         assert dynamics.shape[1] == self.window + self.horizon, "dynamics must have shape (b, t, c, h, w)"
         past_steps = dynamics[:, : self.window, ...]  # (b, window, c, lat, lon) at time 0
         last_step = dynamics[:, -1, ...]  # (b, c, lat, lon) at time t=window+horizon

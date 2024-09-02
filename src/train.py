@@ -37,6 +37,10 @@ def run_model(config: DictConfig) -> float:
     pl.seed_everything(config.seed)
 
     # If not resuming training, check if run already exists (with same hyperparameters and seed)
+    try:
+        config.diffusion.interpolator_run_id = str(config.diffusion.interpolator_run_id)
+    except:
+        pass
     config = cfg_utils.extras(config, if_wandb_run_already_exists="resume")
 
     wandb_id = config.logger.wandb.get("id") if hasattr(config.logger, "wandb") else None
@@ -76,7 +80,7 @@ def run_model(config: DictConfig) -> float:
     loggers = cfg_utils.get_all_instantiable_hydra_modules(config, "logger")
 
     # Init Lightning trainer
-    trainer: pl.Trainer = hydra.utils.instantiate(config.trainer, callbacks=callbacks, logger=loggers)
+    trainer: pl.Trainer = hydra.utils.instantiate(config.trainer, callbacks=callbacks, logger=loggers, accumulate_grad_batches=4)
 
     # Send some parameters from config to be saved by the lightning loggers
     cfg_utils.log_hyperparameters(

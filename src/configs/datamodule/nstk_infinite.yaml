@@ -1,0 +1,9 @@
+defaults:
+  - _base_data_config.yaml   # general, dataset-independent, parameters
+  - _self_
+
+_target_: src.datamodules.nstk_infinite.NSTKInfiniteDataModule
+data_dir: "/global/cfs/cdirs/m4633/foundationmodel/nskt_tensor"
+physical_system: "nstk"
+prediction_horizon: null        # prediction horizon (in days), if null, use the default horizon
+size: 8192

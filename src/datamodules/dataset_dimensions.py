@@ -17,6 +17,9 @@ def get_dims_of_dataset(datamodule_config: DictConfig):
             conditional_dim = 1
         else:
             raise ValueError(f"Unknown physical system: {datamodule_config.physical_system}")
+    elif "nstk" in target:
+        input_dim, output_dim, spatial_dims = 1, 1, (256, 256)
+        # conditional_dim = 0 # TODO what is this?
     else:
         raise ValueError(f"Unknown dataset: {target}")
     return {"input": input_dim, "output": output_dim, "spatial": spatial_dims, "conditional": conditional_dim}

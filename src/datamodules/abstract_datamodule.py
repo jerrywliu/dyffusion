@@ -50,6 +50,7 @@ class BaseDataModule(pl.LightningDataModule):
         drop_last: bool = False,
         verbose: bool = True,
         seed_data: int = 43,
+        **kwargs,
     ):
         """
         Args:

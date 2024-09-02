@@ -1,0 +1,17 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=nstk_interpolation
+
+defaults:
+  - nstk.yaml
+  - override /module: interpolation.yaml
+  - _self_
+
+name: "nstk-Interpolation${datamodule.horizon}h"
+module:
+  enable_inference_dropout: True
+
+logger:
+  wandb:
+    tags: ["nstk", "interpolation"]

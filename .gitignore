@@ -180,6 +180,7 @@ results/checkpoints/**
 results/wandb/**
 results/logs/**
 outputs/**
+slurm*.out
 
 tmp.sh
 tmp.py

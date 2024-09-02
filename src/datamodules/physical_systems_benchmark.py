@@ -240,6 +240,7 @@ class PhysicalSystemsBenchmarkDataModule(BaseDataModule):
                 trajectories["metadata"] = trajectories["metadata"] + traj_metadata
         # print(f'Shapes={trajectories["dynamics"].shape}, {trajectories["extra_condition"].shape}')
         # E.g. with 90 total examples, horizon=5, window=1: Shapes=(90, 6, 3, 221, 42), (90, 2, 221, 42)
+        print(f"Shapes={trajectories['dynamics'].shape}, {trajectories['condition'].shape}")
         return trajectories
 
     def boundary_conditions(

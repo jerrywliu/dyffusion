@@ -3,7 +3,7 @@ defaults:
   - _base_data_config.yaml   # general, dataset-independent, parameters
 
 _target_: src.datamodules.oisstv2.OISSTv2DataModule
-# data_dir: "C:/Users/XYZ/data/oisstv2"
+data_dir: "/pscratch/sd/j/jwl50/dyffusion/data/oisstv2"
 boxes: [88]                    # "all" for all boxes (in data dir), or a list of boxes, e.g. [1, 53, 189]
 validation_boxes: ${datamodule.boxes}                 # "all", or a list of boxes, e.g. [1, 53, 189]
 train_start_date: null

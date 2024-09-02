@@ -222,7 +222,7 @@ def extras(
         if wandb_cfg.get("id"):
             wandb_status = "resume"
             log.info(f"Resuming experiment with wandb run ID = {config.logger.wandb.id}")
-            run_api = get_run_api(run_id=wandb_cfg.id)
+            run_api = get_run_api(run_id=str(wandb_cfg.id))
             # Set config wandb keys in case they were none, to the wandb defaults
             for k in wandb_cfg.keys():
                 config.logger.wandb[k] = getattr(run_api, k) if hasattr(run_api, k) else wandb_cfg[k]
