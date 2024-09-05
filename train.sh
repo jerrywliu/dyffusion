@@ -15,8 +15,12 @@ source activate dyffusion
 # cmd="WAND__SERVICE_WAIT=300 python run.py experiment=navier_stokes_dyffusion diffusion.interpolator_run_id=dq31fual"
 
 # NSTK: interpolation and dyffusion
-cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_interpolation"
-# cmd="WAND__SERVICE_WAIT=300 python run.py experiment=nstk_dyffusion"
+# cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_interpolation"
+cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_dyffusion"
+
+# Test
+# Need to go into wandb.yaml and change the project name
+# python run.py mode=test logger.wandb.id=30020382 datamodule.prediction_horizon=16
 
 set -x
 srun -l \

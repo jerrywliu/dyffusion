@@ -7,7 +7,9 @@ wandb:
   name: null   # will be automatically set to the name of the run (plus timestamp, etc.)
   tags: []
   notes: "..."
+  # project: "DYffusion"
   project: "DYffusion-nstk"
+  # project: "DYffusion-navier-stokes"
   group: ""
   resume: "allow"
   reinit: True
