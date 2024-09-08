@@ -16,7 +16,7 @@ source activate dyffusion
 
 # NSTK: interpolation and dyffusion
 # cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_interpolation"
-cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_dyffusion"
+cmd="WAND__SERVICE_WAIT=300 CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py experiment=nstk_dyffusion2"
 
 # Test
 # Need to go into wandb.yaml and change the project name
